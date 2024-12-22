@@ -59,14 +59,17 @@ def get():
 
         if output_name is None or output_name == '':
             slashes = url.rfind('/')
-            dot = url.rfind('.')
             if slashes != -1:
-                if dot != -1 and slashes < dot:
-                    output_name = url[slashes + 1 : dot]
+                output_name  = url[slashes + 1 :]
+                dot = output_name .find('.')
+                if dot != -1:
+                    output_name = url[slashes + 1 : slashes + dot + 1]
                     if output_type is None or output_type == '':
-                        output_type = url[dot :]
-                else:
-                    output_name = url[slashes + 1 :]
+                        output_type = url[slashes + dot + 1 :]
+        elif output_type is None or output_type == '':
+            dot = url.rfind('.')
+            if dot != -1:
+                output_type = url[dot :]
         
         while output_name is None or output_name == '':
             output_name = input('请输入文件名：')
@@ -74,9 +77,12 @@ def get():
         if output_type is None or output_type == '':
             output_type = input('请输入文件后缀：')
 
-        if output_type and not '.' in output_type:
+        if output_type and output_type[: 1] != '.':
             output_type = f".{output_type}"
-            
+        
+        if len(output_type) + len(output_name) + len(folder_path) >= 230:
+            output_name = output_name[: 230 - len(output_name) - len(folder_path) - 10]
+
         output_path = folder_path + '/' + output_name + extra_number + output_type
         e = 1
         while path.exists(output_path):

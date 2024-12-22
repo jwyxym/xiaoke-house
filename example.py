@@ -6,5 +6,6 @@ data = {
     "folder_path": "download",
     "output_name": "",
     "output_type": "",
+    "forbidden_name": ["<", ">", "/", "\\", "|", ":", "\"", "*", "?"],
     "mode": 0
 }

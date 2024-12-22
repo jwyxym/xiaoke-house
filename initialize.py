@@ -46,6 +46,7 @@ def get():
         folder_path = download['folder_path']
         output_name = download['output_name']
         output_type = download['output_type']
+        forbidden_name = download['forbidden_name']
         extra_number = ''
 
         if (url is None or url == '') and download['mode'] == 0:
@@ -80,6 +81,9 @@ def get():
         if output_type and output_type[: 1] != '.':
             output_type = f".{output_type}"
         
+        for char in forbidden_name:
+            output_name = output_name.replace(char, "")
+
         if len(output_type) + len(output_name) + len(folder_path) >= 230:
             output_name = output_name[: 230 - len(output_name) - len(folder_path) - 10]
 

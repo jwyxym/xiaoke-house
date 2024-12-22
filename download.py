@@ -14,7 +14,7 @@ class Progress:
             self.e = '无法得到进度条' + '.' * 3
         else:
             self.e = '#' * 10 + '-' * 0
-        print(f"\r{self.e}")
+        print(f"\033[93m\r{self.e}\033[0m")
         self.i = 0
         self.step = 0
         self.e = ''
@@ -31,7 +31,7 @@ class Progress:
             if self.step >= (int(content_length) / 10240):
                 self.step = 0
                 self.i += 1
-        print(f"\r{self.e}", end = "")
+        print(f"\033[93m\r{self.e}\033[0m", end = "")
 
 async def download(url, output_path):
     progress = Progress()

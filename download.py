@@ -13,7 +13,7 @@ class Progress:
         if '无法得到进度条' in self.e:
             self.e = '无法得到进度条' + '.' * 3
         else:
-            self.e = '#' * 10 + '-' * 0
+            self.e = '下载进度：' + '#' * 10
         print(f"\033[93m\r{self.e}\033[0m")
         self.i = 0
         self.step = 0
@@ -26,7 +26,7 @@ class Progress:
             if self.step > 3:
                 self.step = 0
         else:
-            self.e = '#' * self.i + '-' * (10 - self.i)
+            self.e = '下载进度：' + '#' * self.i + '-' * (10 - self.i)
             self.step += 1
             if self.step >= (int(content_length) / 10240):
                 self.step = 0

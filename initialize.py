@@ -62,7 +62,7 @@ def get():
             slashes = url.rfind('/')
             if slashes != -1:
                 output_name  = url[slashes + 1 :]
-                dot = output_name .find('.')
+                dot = output_name.find('.')
                 if dot != -1:
                     output_name = url[slashes + 1 : slashes + dot + 1]
                     if output_type is None or output_type == '':

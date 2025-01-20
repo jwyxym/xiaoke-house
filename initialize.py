@@ -40,7 +40,7 @@ def proxy_url(json, url):
 
 def get():
     if create_file('download.json'):
-        with open('download.json', 'r') as file:
+        with open('download.json', 'r', encoding='utf-8') as file:
             download = load(file)
         url = download['url']
         folder_path = download['folder_path']
